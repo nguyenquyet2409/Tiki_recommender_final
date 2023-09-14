@@ -99,21 +99,21 @@ else:
     n = st.slider(
         'Chọn số lượng sản phẩm tối đa mà bạn muốn hệ thống giới thiệu (từ 1 đến 10)',
         1, 10, 5)
-        # Create list icon star
-    star_icons = ["⭐", "⭐⭐ trở lên", "⭐⭐⭐ trở lên", "⭐⭐⭐⭐ trở lên", "⭐⭐⭐⭐⭐"]
 
-    # Select the product rating you want to recommend
-    min_rating_index = st.select_slider(
-        'Đánh giá', 
-        options=list(range(5)), 
-        format_func=lambda x: star_icons[x],
-        value=0)
+    # Create list icon star
+    star_icons = ["⭐ trở lên", "⭐⭐ trở lên", "⭐⭐⭐ trở lên", "⭐⭐⭐⭐ trở lên", "⭐⭐⭐⭐⭐"]
 
-    min_rating = min_rating_index + 1
-    if min_rating < 5:
-        st.write('Các sản phẩm có đánh giá', min_rating,'⭐','trở lên')
+    # Radio button for min_rating
+    selected_min_rating = st.radio("Chọn đánh giá:", star_icons)
+
+    # Sử dụng index của dòng được chọn để xác định min_rating
+    if selected_min_rating:
+        min_rating = star_icons.index(selected_min_rating) + 1
+
+    if min_rating <5:
+        st.write(f'Các sản phẩm có đánh giá tối thiểu {min_rating}⭐ trở lên')
     else:
-        st.write('Các sản phẩm có đánh giá', min_rating,'⭐')
+        st.write(f'Các sản phẩm có đánh giá tối thiểu {min_rating}⭐')
 
 
     # 'Recommend' button
