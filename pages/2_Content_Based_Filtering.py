@@ -333,9 +333,10 @@ def input_description():
                 index = row * num_items_per_row + col
                 if index < n:
                     with cols[col]:
-                        st.image(images[index], caption=names[index])
-                        st.markdown(f"<div style='font-size: 14px; color: white; text-align: center;'>Giá: <span style='color: #CC0000;'>{prices[index]}đ</span></div>", unsafe_allow_html=True)
-                        st.markdown(f"<div style='font-size: 14px; color: white; text-align: center;'>Đánh giá: <span style='color: #CC0000;'>{ratings[index]}⭐</span></div>", unsafe_allow_html=True)
+                        if index < len(images) and index < len(names):
+                            st.image(images[index], caption=names[index])
+                            st.markdown(f"<div style='font-size: 14px; color: white; text-align: center;'>Giá: <span style='color: #CC0000;'>{prices[index]}đ</span></div>", unsafe_allow_html=True)
+                            st.markdown(f"<div style='font-size: 14px; color: white; text-align: center;'>Đánh giá: <span style='color: #CC0000;'>{ratings[index]}⭐</span></div>", unsafe_allow_html=True)
 
 ##### CALLING PAGE  #####
 page_names_to_funcs = {
