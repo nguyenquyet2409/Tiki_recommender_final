@@ -1,0 +1,8 @@
+streamlit
+pandas
+underthesea
+gensim
+seaborn
+matplotlib
+scikit-learn
+
