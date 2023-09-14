@@ -28,5 +28,5 @@ def background_image(image_file):
 image_file = 'background.png'
 background_image(image_file)
 
-st.markdown("# A recommender system for Tiki.vn 🛒")
+st.markdown('<h1 style="color:#00FF00;">A recommender system for Tiki.vn 🛒</h1>', unsafe_allow_html=True)
 
