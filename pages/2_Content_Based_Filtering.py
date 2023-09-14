@@ -257,7 +257,9 @@ def input_description_product(dataframe, index, input_product_name, num_similar,
         similar_products_info.append(similar_product_info)
     
     result = pd.DataFrame(similar_products_info)
-    
+    if len(result) == 0:
+        st.warning("Không có sản phẩm phù hợp với tiêu chí đã chọn.")
+        return [], [], [], []
     n_highest_score = result.sort_values(by='score', ascending=False).head(num_similar)
     # Extract product_id of above request
     id_tolist = list(n_highest_score['index'])
