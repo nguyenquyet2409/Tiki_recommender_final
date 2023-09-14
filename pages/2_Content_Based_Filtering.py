@@ -165,23 +165,38 @@ def filter_list():
     n = st.slider(
     'Chọn số lượng sản phẩm tối đa tương tự như trên mà bạn muốn hệ thống giới thiệu (từ 1 đến 10)',
     1, 10, 5)
+#########################################################################################################################
+    # # Create list icon star
+    # star_icons = ["⭐", "⭐⭐ trở lên", "⭐⭐⭐ trở lên", "⭐⭐⭐⭐ trở lên", "⭐⭐⭐⭐⭐"]
 
+    # # Select the product rating you want to recommend
+    # min_rating_index = st.select_slider(
+    #     'Đánh giá', 
+    #     options=list(range(5)), 
+    #     format_func=lambda x: star_icons[x],
+    #     value=3)
+
+    # min_rating = min_rating_index + 1
+    # if min_rating < 5:
+    #     st.write('Các sản phẩm có đánh giá', min_rating,'⭐','trở lên')
+    # else:
+    #     st.write('Các sản phẩm có đánh giá', min_rating,'⭐')
+
+###########################################################################################################################        
     # Create list icon star
-    star_icons = ["⭐", "⭐⭐ trở lên", "⭐⭐⭐ trở lên", "⭐⭐⭐⭐ trở lên", "⭐⭐⭐⭐⭐"]
+    star_icons = ["⭐ trở lên", "⭐⭐ trở lên", "⭐⭐⭐ trở lên", "⭐⭐⭐⭐ trở lên", "⭐⭐⭐⭐⭐"]
 
-    # Select the product rating you want to recommend
-    min_rating_index = st.select_slider(
-        'Đánh giá', 
-        options=list(range(5)), 
-        format_func=lambda x: star_icons[x],
-        value=3)
+    # Radio button for min_rating
+    selected_min_rating = st.radio("Chọn đánh giá:", star_icons)
 
-    min_rating = min_rating_index + 1
-    if min_rating < 5:
-        st.write('Các sản phẩm có đánh giá', min_rating,'⭐','trở lên')
+    # Sử dụng index của dòng được chọn để xác định min_rating
+    if selected_min_rating:
+        min_rating = star_icons.index(selected_min_rating) + 1
+
+    if min_rating <5:
+        st.write(f'Các sản phẩm có đánh giá tối thiểu {min_rating}⭐ trở lên')
     else:
-        st.write('Các sản phẩm có đánh giá', min_rating,'⭐')
-
+        st.write(f'Các sản phẩm có đánh giá tối thiểu {min_rating}⭐')
 # 'Recommend' button
     if st.button('Recommend'):
         min_rating = min_rating
@@ -297,25 +312,45 @@ def input_description():
     'Chọn số lượng sản phẩm tối đa tương tự như trên mà bạn muốn hệ thống giới thiệu (từ 1 đến 10)',
     1, 10, 5)
 
+################################################################### Slicer#################################
+   
+    # # Create list icon star
+    # star_icons = ["⭐", "⭐⭐ trở lên", "⭐⭐⭐ trở lên", "⭐⭐⭐⭐ trở lên", "⭐⭐⭐⭐⭐"]
+
+    # # Select the product rating you want to recommend
+    # min_rating_index = st.select_slider(
+    #     'Đánh giá', 
+    #     options=list(range(5)), 
+    #     format_func=lambda x: star_icons[x],
+    #     value=3)
+
+    # min_rating = min_rating_index + 1
+
+    # if min_rating < 5:
+    #     st.write('Các sản phẩm có đánh giá', min_rating,'⭐','trở lên')
+    # else:
+    #     st.write('Các sản phẩm có đánh giá', min_rating,'⭐')
+    
+
+################################################### Radio button #################################
     # Create list icon star
-    star_icons = ["⭐", "⭐⭐ trở lên", "⭐⭐⭐ trở lên", "⭐⭐⭐⭐ trở lên", "⭐⭐⭐⭐⭐"]
+    star_icons = ["⭐ trở lên", "⭐⭐ trở lên", "⭐⭐⭐ trở lên", "⭐⭐⭐⭐ trở lên", "⭐⭐⭐⭐⭐"]
 
-    # Select the product rating you want to recommend
-    min_rating_index = st.select_slider(
-        'Đánh giá', 
-        options=list(range(5)), 
-        format_func=lambda x: star_icons[x],
-        value=3)
+    # Radio button for min_rating
+    selected_min_rating = st.radio('Chọn đánh giá',star_icons)
 
-    min_rating = min_rating_index + 1
-    if min_rating < 5:
-        st.write('Các sản phẩm có đánh giá', min_rating,'⭐','trở lên')
+    # Sử dụng index của dòng được chọn để xác định min_rating
+    if selected_min_rating:
+        min_rating = star_icons.index(selected_min_rating) + 1
+
+    if min_rating <5:
+        st.write(f'Các sản phẩm có đánh giá tối thiểu {min_rating}⭐ trở lên')
     else:
-        st.write('Các sản phẩm có đánh giá', min_rating,'⭐')
+        st.write(f'Các sản phẩm có đánh giá tối thiểu {min_rating}⭐')
+
 
     # 'Recommend' button
     if st.button('Recommend'):
-        # text_input = ' '.join(map(str, process_text(text_input)))
         index = similarities.docsim.SparseMatrixSimilarity.load("index.docsim")
         names, prices, ratings, images = input_description_product(dataframe=Product, index=index, input_product_name=text_input, num_similar=n+1, min_rating=min_rating)
         names = names[:n]
@@ -336,7 +371,7 @@ def input_description():
                         if index < len(images) and index < len(names):
                             st.image(images[index], caption=names[index])
                             st.markdown(f"<div style='font-size: 14px; color: white; text-align: center;'>Giá: <span style='color: #CC0000;'>{prices[index]}đ</span></div>", unsafe_allow_html=True)
-                            st.markdown(f"<div style='font-size: 14px; color: white; text-align: center;'>Đánh giá: <span style='color: #CC0000;'>{ratings[index]}⭐</span></div>", unsafe_allow_html=True)
+                            st.markdown(f"<div style='font-size: 14px; color: white; text-align: center;'>Đánh giá: <span style='color: #CC0000;'>{ratings[index]}⭐</span></div>", unsafe_allow_html=True)                   
 
 ##### CALLING PAGE  #####
 page_names_to_funcs = {
