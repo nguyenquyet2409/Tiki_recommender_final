@@ -313,7 +313,7 @@ def input_description():
 
     # 'Recommend' button
     if st.button('Recommend'):
-        text_input = ' '.join(map(str, process_text(text_input)))
+        # text_input = ' '.join(map(str, process_text(text_input)))
         index = similarities.docsim.SparseMatrixSimilarity.load("index.docsim")
         names, prices, ratings, images = input_description_product(dataframe=Product, index=index, input_product_name=text_input, num_similar=n+1, min_rating=min_rating)
         names = names[:n]
