@@ -6,7 +6,7 @@ page_bg_img = '''
 <style>
 
 [data-testid="stSidebar"] {
-background-image: linear-gradient(to right, #a8caba 0%, #5d4157 100%);
+background: linear-gradient(-225deg, #5271C4 0%, #B19FFF 48%, #ECA1FE 100%);
 }
 
 </style>
