@@ -148,7 +148,8 @@ else:
                         formatted_price = '{:,.0f}đ'.format(recommendations[index][3])  # Định dạng giá sản phẩm
                         st.markdown(f"<div style='font-size: 14px; color: #333; text-align: center;'><span style='color: white;'>Giá:</span> <span style='color: #CC0000;'>{formatted_price}</span></div>", unsafe_allow_html=True)
                         st.markdown(f"<div style='font-size: 14px; color: #333; text-align: center;'><span style='color: white;'>Đánh giá:</span> <span style='color: #CC0000;'>{recommendations[index][2]}⭐</span></div>", unsafe_allow_html=True)
-
+        
+        st.write('<span style="font-size: 24px; font-weight: bold; color: #CC0000;">GỢI Ý</span>', unsafe_allow_html=True)
         st.write('Các sản phẩm customer id:', number, 'đã mua gần đây:')
         products_bought_by_customer = Review.loc[(Review['customer_id'] == number) & (Review['rating'] >= 4)]
         if not products_bought_by_customer.empty:
