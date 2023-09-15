@@ -1,6 +1,19 @@
 import streamlit as st
 from PIL import Image
 
+###### GUI
+page_bg_img = '''
+<style>
+
+[data-testid="stSidebar"] {
+background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+}
+
+</style>
+'''
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
+
 
 st.markdown("# Project Overview")
 st.header("I. Project Objectives")
