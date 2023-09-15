@@ -9,6 +9,18 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+###### GUI
+page_bg_img = '''
+<style>
+
+[data-testid="stSidebar"] {
+background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+}
+
+</style>
+'''
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 # Set background image
 def background_image(image_file):
     with open(image_file, "rb") as image_file:
