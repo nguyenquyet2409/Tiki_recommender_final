@@ -12,6 +12,18 @@ import streamlit as st
 import pickle
 
 
+################################################################################################
+page_bg_img = '''
+<style>
+
+[data-testid="stSidebar"] {
+background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+}
+
+</style>
+'''
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 ############################################################################################
 st.title("Content Based Filtering")
 Product = pd.read_csv('Product_clean.csv', encoding="utf8", index_col=0)
